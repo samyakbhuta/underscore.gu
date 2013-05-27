@@ -1,0 +1,32 @@
+{
+  "name": "underscore.gu",
+  "version": "0.0.1",
+  "description": "Set of Gujarati language helpers as underscore.js mixins.",
+  "main": "./lib/underscore.gu.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {
+    "mocha": "~1.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/samyakbhuta/underscore.gu.git"
+  },
+  "keywords": [
+    "gujarati",
+    "underscore",
+    "unicode",
+    "helper",
+    "utility",
+    "mixins"
+  ],
+  "author": "Samyak Bhuta <samyak.bhuta@gmail.com> (<http://twitter.com/samyak_bhuta>)",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "9dcd8802810a8a4f20f6467f2a90ba7b1d5e9ff7"
+}
