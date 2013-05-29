@@ -1,6 +1,6 @@
 {
   "name": "underscore.gu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Set of Gujarati language helpers as underscore.js mixins.",
   "main": "./lib/underscore.gu.js",
   "directories": {
