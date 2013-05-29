@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>underscore.gu.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>underscore.gu.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> _gu = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Checks if <code>aChar</code> is in Gujarati Unicode Character (GUC) range.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  isInGUCRange : <span class="function"><span class="keyword">function</span> <span class="params">(aChar)</span> {</span>
+    <span class="keyword">if</span> (<span class="string">'\u0A80'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0AFF'</span>) {
+      <span class="keyword">return</span> <span class="literal">true</span>;
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Checks if &#39;aChar&#39; holds any significance and is not any of the reserved character.
+e.g. &#39;\u0A80&#39; or &#39;\u0A84&#39; though falls in GUC range, doesn&#39;t have any significance or value.
+Complete list is as follows.
+&#39;\u0A80&#39;
+&#39;\u0A84&#39;
+&#39;\u0A8E&#39;
+&#39;\u0A92&#39;
+&#39;\u0AA9&#39;
+&#39;\u0AB1&#39;
+&#39;\u0AB4&#39;
+&#39;\u0ABA&#39;
+&#39;\u0ABB&#39;
+&#39;\u0AC6&#39;
+&#39;\u0ACA&#39;
+&#39;\u0ACE&#39;
+&#39;\u0ACF&#39;
+&#39;\u0AD1&#39; to &#39;\u0ADF&#39;
+&#39;\u0AE4&#39; to &#39;\u0AE5&#39;
+&#39;\u0AF2&#39; to &#39;\u0AFF&#39;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  isValidGUC : <span class="function"><span class="keyword">function</span> <span class="params">(aChar)</span> {</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>.isInGUCRange(aChar)) {
+      <span class="keyword">if</span> (aChar === <span class="string">'\u0A80'</span> || aChar === <span class="string">'\u0A84'</span> || aChar === <span class="string">'\u0A8E'</span> || aChar === <span class="string">'\u0A92'</span> ||
+          aChar === <span class="string">'\u0AA9'</span> || aChar === <span class="string">'\u0AB1'</span> || aChar === <span class="string">'\u0AB4'</span> || aChar === <span class="string">'\u0ABA'</span> ||
+          aChar === <span class="string">'\u0ABB'</span> || aChar === <span class="string">'\u0AC6'</span> || aChar === <span class="string">'\u0ACA'</span> || aChar === <span class="string">'\u0ACE'</span> ||
+          aChar === <span class="string">'\u0ACF'</span> ||
+          (<span class="string">'\u0AD1'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0ADF'</span>) ||
+          (<span class="string">'\u0AE4'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0AE5'</span>) ||
+          (<span class="string">'\u0AF2'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0AFF'</span>)) {
+        <span class="keyword">return</span> <span class="literal">false</span>;
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="literal">true</span>;
+      }
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Checks if the character is a vowel character.
+For this check to pass, a character need to be either a explicit vowel character or a diacritical mark character signifying a vowel.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  isVowel : <span class="function"><span class="keyword">function</span> <span class="params">(aChar)</span> {</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>.isValidGUC(aChar)) {
+      <span class="keyword">if</span> ((<span class="string">'\u0A85'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0A94'</span>) || (<span class="string">'\u0ABD'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0ACC'</span>)) {
+        <span class="keyword">return</span> <span class="literal">true</span>;
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="literal">false</span>;
+      }
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Checks if the character is a consonant character.
+For this check to pass, a character need to be a consonant or Anusvara which represents a consonant.
+Note : Dipthongs are considered consonants here.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  isConsonant : <span class="function"><span class="keyword">function</span> <span class="params">(aChar)</span> {</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>.isValidGUC(aChar)) {
+      <span class="keyword">if</span> ((<span class="string">'\u0A95'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0AB9'</span>) || (aChar === <span class="string">'\u0A82'</span>)) {
+        <span class="keyword">return</span> <span class="literal">true</span>;
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="literal">false</span>;
+      }
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Checks if the character is any of the dipthongs.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  isDipthong : <span class="function"><span class="keyword">function</span> <span class="params">(aChar)</span> {</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>.isValidGUC(aChar)) {
+      <span class="keyword">if</span> (aChar === <span class="string">'\u0AAF'</span> || aChar === <span class="string">'\u0AB2'</span> || aChar === <span class="string">'\u0AB3'</span> ||  aChar === <span class="string">'\u0AB5'</span>) {
+        <span class="keyword">return</span> <span class="literal">true</span>;
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="literal">false</span>;
+      }
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Checks if the character is any of the plosives.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  isPlosive : <span class="function"><span class="keyword">function</span> <span class="params">(aChar)</span> {</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>.isValidGUC(aChar)) {
+      <span class="keyword">if</span> ((<span class="string">'\u0A95'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0AAE'</span>) || (aChar === <span class="string">'\u0A82'</span>)) {
+        <span class="keyword">return</span> <span class="literal">true</span>;
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="literal">false</span>;
+      }
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Checks if the character is any of the fricatives.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  isFricative : <span class="function"><span class="keyword">function</span> <span class="params">(aChar)</span> {</span>
+    <span class="keyword">if</span> (<span class="keyword">this</span>.isValidGUC(aChar)) {
+      <span class="keyword">if</span> (<span class="string">'\u0AB6'</span> &lt;= aChar &amp;&amp; aChar &lt;= <span class="string">'\u0AB8'</span>) {
+        <span class="keyword">return</span> <span class="literal">true</span>;
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="literal">false</span>;
+      }
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+  }
+
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3>Exporting</h3>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>CommonJS module is defined</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">if</span> (<span class="keyword">typeof</span> exports !== <span class="string">'undefined'</span>) {
+  <span class="keyword">if</span> (<span class="keyword">typeof</span> module !== <span class="string">'undefined'</span> &amp;&amp; module.exports) {
+    module.exports = _gu;
+  }
+  exports._gu = _gu;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Register as a named module with AMD.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) {
+  define(<span class="string">'underscore.gu'</span>, [], <span class="keyword">function</span>(){ <span class="keyword">return</span> _gu; });
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
