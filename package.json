@@ -5,7 +5,8 @@
   "main": "./lib/underscore.gu.js",
   "directories": {
     "lib": "lib",
-    "test": "test"
+    "test": "test",
+    "doc": "docs"
   },
   "devDependencies": {
     "mocha": "~1.10.0"
