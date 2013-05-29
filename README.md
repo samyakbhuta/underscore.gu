@@ -6,3 +6,6 @@ Inspiration and Code borrowing
 -----------------------------
 [Underscore.string] (https://github.com/epeli/underscore.string)
 
+Developers
+----------
+We accept pull requests.
